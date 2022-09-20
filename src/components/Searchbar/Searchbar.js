@@ -1,46 +1,46 @@
 import { Component } from 'react';
-import PropTypes from 'prop-types';
-import { VscEye } from 'react-icons/vsc';
 import s from './Searchbar.module.css';
+import PropTypes from 'prop-types';
 
 export class Searchbar extends Component {
-    state = {request: ''};
+  state = {
+    request: '',
+  };
 
-    handleRequest = evt => {
-        this.setState({request: evt.currentTarget.value.toLowerCase().trim() });
-    };
+  handleRequest = event => {
+    this.setState({ request: event.currentTarget.value.toLowerCase().trim() });
+  };
 
-    handleSubmit = evt => {
-        const { request } = this.state;
-        evt.preventDefault();
-        this.props.onSubmit(request);
-      };
+  handleSubmit = event => {
+    const { request } = this.state;
+    event.preventDefault();
+    this.props.onSubmit(request);
+  };
 
+  render() {
+    return (
+      <header className={s.Searchbar}>
+        <form className={s.SearchForm} onSubmit={this.handleSubmit}>
+          <button type="submit" className={s.button}>
+            <span className={s.label}>Search</span>
+          </button>
 
-    render() {
-        return(
-            <header className={s.Searchbar}>
-                <form className={s.SearchForm} onSubmit={this.handleSubmit}>
-                    <button type="submit" className={s.SearchFormButton}>
-                        <VscEye style={{ margin: '5px auto' }} />
-                    </button>
-
-                 <input
-                    className={s.SearchFormInput}
-                    type="text"
-                    autoComplete="off"
-                    autoFocus
-                    placeholder="Search images and photos"
-                    onChange={this.handleRequest}
-                />
-                </form>
-            </header>
-        )
-    }
+          <input
+            className={s.input}
+            type="text"
+            autoComplete="off"
+            autoFocus
+            placeholder="Search images and photos"
+            onChange={this.handleRequest}
+          />
+        </form>
+      </header>
+    );
+  }
 }
 
 Searchbar.propTypes = {
-    onSubmit: PropTypes.func.isRequired,
-  };
+  onSubmit: PropTypes.func.isRequired,
+};
 
 export default Searchbar;

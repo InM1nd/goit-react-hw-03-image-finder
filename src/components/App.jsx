@@ -1,14 +1,13 @@
 import { Component } from 'react';
-import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
-// import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import 'react-toastify/dist/ReactToastify.css';
-import Searchbar from './Searchbar/Searchbar';
+import axios from 'axios';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+import Searchbar from '../components/Searchbar/Searchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
+import Loader from './Loader/Loader';
 import Button from './Button/Button';
 import Modal from './Modal/Modal';
-import LoadSpinner from './LoadSpinner/LoadSpinner';
-
 
 export class App extends Component {
   state = {
@@ -48,7 +47,6 @@ export class App extends Component {
       this.setState({ error, status: 'rejected' });
     }
   }
-
 
   async componentDidUpdate(prevProps, prevState) {
     const { request, page } = this.state;
@@ -111,7 +109,7 @@ export class App extends Component {
             <img src={modalImg} alt={modalAlt} />
           </Modal>
         )}
-        {status === 'pending' && <LoadSpinner />}
+        {status === 'pending' && <Loader />}
         {status !== 'pending' &&
           pictures.length !== 0 &&
           totalPictures !== pictures.length && (

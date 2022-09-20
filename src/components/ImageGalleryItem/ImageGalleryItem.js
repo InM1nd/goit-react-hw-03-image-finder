@@ -1,6 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import s from './ImageGalleryItem.module.css';
+import PropTypes from 'prop-types';
 
 function ImageGalleryItem({
   img,
@@ -33,4 +33,3 @@ ImageGalleryItem.propTypes = {
 };
 
 export default ImageGalleryItem;
-
